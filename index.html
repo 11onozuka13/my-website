@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小野塚 蓮 | 自己紹介</title>
+  <style>
+    /* ==========================================================================
+       ベーススタイル & リセット（システムフォント・白黒モノトーン配色）
+       ========================================================================== */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111111;
+      --border-color: #111111;
+      --muted-color: #555555;
+      --accent-bg: #111111;
+      --accent-text: #ffffff;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      /* 外部フォントを使わず、各OSで美しく表示される標準システムフォントを指定 */
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+      line-height: 1.8;
+      letter-spacing: 0.04em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================================================
+       レイアウトコンテナ
+       ========================================================================== */
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ==========================================================================
+       ヘッダー（名前と大学1年生のステータス）
+       ========================================================================== */
+    .site-header {
+      border-bottom: 2px solid var(--border-color);
+      padding: 20px 0;
+      background-color: var(--bg-color);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .header-name {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .status-badge {
+      display: inline-block;
+      background-color: var(--accent-bg);
+      color: var(--accent-text);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ==========================================================================
+       ヒーローセクション（メインビジュアル & インラインSVG野球モチーフ）
+       ========================================================================== */
+    .hero {
+      padding: 64px 0 80px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-text-area {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted-color);
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.25rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-ruby {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      margin-bottom: 8px;
+      color: var(--muted-color);
+    }
+
+    .hero-tagline {
+      margin-top: 12px;
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      font-weight: 700;
+      padding-left: 16px;
+      border-left: 4px solid var(--border-color);
+    }
+
+    /* インラインSVGグラフィックのコンテナ */
+    .hero-graphic {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .baseball-svg {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      display: block;
+    }
+
+    /* ==========================================================================
+       自己紹介セクション（野球好きを伝えるセクション）
+       ========================================================================== */
+    .about-section {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+    }
+
+    .section-line {
+      flex-grow: 1;
+      height: 2px;
+      background-color: var(--border-color);
+    }
+
+    .about-card {
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px 32px;
+      background-color: var(--bg-color);
+      box-shadow: 8px 8px 0px var(--border-color);
+    }
+
+    .about-statement {
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 800;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .about-body {
+      font-size: 1.05rem;
+      line-height: 2;
+      margin-bottom: 32px;
+    }
+
+    /* 事実のみをまとめたミニマルなプロフィールリスト */
+    .profile-list {
+      border-top: 1px solid var(--border-color);
+      padding-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .profile-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .profile-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--muted-color);
+    }
+
+    .profile-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       フッター（最小限の表記のみ）
+       ========================================================================== */
+    .site-footer {
+      border-top: 2px solid var(--border-color);
+      padding: 32px 0;
+      text-align: center;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+    }
+
+    /* ==========================================================================
+       レスポンシブ対応（タブレット・PCの広い画面向け調整）
+       ========================================================================== */
+    @media (min-width: 768px) {
+      .hero {
+        padding: 96px 0 112px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 32px;
+      }
+
+      .baseball-svg {
+        max-width: 320px;
+      }
+
+      .about-card {
+        padding: 56px 48px;
+      }
+
+      .profile-list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー：名前と大学1年生のステータス -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="header-name">小野塚 蓮</div>
+      <span class="status-badge">大学1年生</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- ヒーローセクション：白黒タイポグラフィとインラインSVG野球モチーフ -->
+    <section class="hero" aria-label="メインビジュアル">
+      <div class="container hero-grid">
+        <div class="hero-text-area">
+          <p class="hero-eyebrow">Profile</p>
+          <h1 class="hero-title">
+            <span class="hero-ruby">おのづか れん</span>
+            小野塚 蓮
+          </h1>
+          <p class="hero-tagline">大学1年生 / 野球好き</p>
+        </div>
+
+        <!-- 外部画像を使わないインラインSVGの野球モチーフ（ダイヤモンドとボールの縫い目） -->
+        <div class="hero-graphic" aria-hidden="true">
+          <svg class="baseball-svg" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- 外周の野球ダイヤモンド（ひし形） -->
+            <polygon points="120,12 228,120 120,228 12,120" stroke="#111111" stroke-width="3" fill="#ffffff"/>
+            <!-- ベース（ホーム・1塁・2塁・3塁）のスクエア -->
+            <rect x="113" y="19" width="14" height="14" transform="rotate(45 120 26)" fill="#111111"/>
+            <rect x="207" y="113" width="14" height="14" transform="rotate(45 214 120)" fill="#111111"/>
+            <rect x="113" y="207" width="14" height="14" transform="rotate(45 120 214)" fill="#111111"/>
+            <rect x="19" y="113" width="14" height="14" transform="rotate(45 26 120)" fill="#111111"/>
+            
+            <!-- 中央の野球ボール -->
+            <circle cx="120" cy="120" r="54" fill="#ffffff" stroke="#111111" stroke-width="3.5"/>
+            
+            <!-- ボールの縫い目（左カーブ） -->
+            <path d="M 85 78 Q 108 120 85 162" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="87" y1="88" x2="96" y2="85" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+            <line x1="92" y1="103" x2="101" y2="101" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+            <line x1="94" y1="120" x2="103" y2="120" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+            <line x1="92" y1="137" x2="101" y2="139" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+            <line x1="87" y1="152" x2="96" y2="155" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- ボールの縫い目（右カーブ） -->
+            <path d="M 155 78 Q 132 120 155 162" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="153" y1="88" x2="144" y2="85" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+            <line x1="148" y1="103" x2="139" y2="101" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+            <line x1="146" y1="120" x2="137" y2="120" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+            <line x1="148" y1="137" x2="139" y2="139" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+            <line x1="153" y1="152" x2="144" y2="155" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 自己紹介セクション：野球好きをストレートに伝える -->
+    <section class="about-section" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="about-heading" class="section-title">ABOUT / BASEBALL</h2>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+
+        <div class="about-card">
+          <p class="about-statement">
+            大学1年生の小野塚 蓮です。<br>
+            野球が大好きです。
+          </p>
+          <p class="about-body">
+            はじめまして、小野塚 蓮（おのづか れん）と申します。<br>
+            現在、大学1年生として日々を過ごしています。何よりも野球が好きで、野球への熱い気持ちを持っています。
+          </p>
+
+          <!-- メモにある事実のみを整理したリスト -->
+          <dl class="profile-list">
+            <div class="profile-item">
+              <dt class="profile-label">NAME / 名前</dt>
+              <dd class="profile-value">小野塚 蓮</dd>
+            </div>
+            <div class="profile-item">
+              <dt class="profile-label">STATUS / 所属</dt>
+              <dd class="profile-value">大学1年生</dd>
+            </div>
+            <div class="profile-item">
+              <dt class="profile-label">PASSION / 好きなこと</dt>
+              <dd class="profile-value">野球</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- フッター：最小限のコピーライト表記のみ -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 小野塚 蓮 / Ren Onozuka</p>
+    </div>
+  </footer>
+
+</body>
+</html>
